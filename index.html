@@ -1,0 +1,72 @@
+<body>
+	<div style="background-color: green; width: 500px;height:500px;position: absolute;">
+		<div style="height: 400px; width: 400px; border: 10px solid grey;position: absolute; margin-top:40px;margin-left: 40px;">
+        		<div style="width: 400px; height: 400px;">
+        	   		<div id="teste" style="background-color: red; width: 100px; height: 100px;margin: auto;margin-top: 150;margin-left: 150px;"></div>
+       			</div>
+    		</div>
+	</div>
+</body>
+
+<script>
+    
+    let contador_top=0;    
+    let contador_bottom=0;
+
+    let pra_frente = true;
+    let pra_baixo = false;
+    let pra_cima = false;
+    let pra_tras = false;
+
+    function loopBall() {
+        setTimeout(() => {
+             
+            document.getElementById("teste").style.marginTop = parseInt(contador_top)+"px";
+            document.getElementById("teste").style.marginLeft = parseInt(contador_bottom)+"px";
+	
+		//Pra frente
+		if ((contador_top == 0) && (contador_bottom == 0)) {
+			pra_frente=true;
+			pra_baixo = false;
+			pra_cima = false;
+			pra_tras = false;
+		}
+		if ((contador_top == 300) && (contador_bottom == 300)) {
+			pra_frente=false;
+			pra_baixo = false;
+			pra_cima = false;
+			pra_tras = true;
+		}
+		//Pra baixo
+		if ((contador_top == 0) && (contador_bottom == 300)) {
+			pra_frente=false;
+			pra_baixo = true;
+			pra_cima = false;
+			pra_tras = false;
+		}
+		if ((contador_top == 300) && (contador_bottom == 0)) {
+			pra_frente=false;
+			pra_baixo = false;
+			pra_cima = true;
+			pra_tras = false;
+		}
+
+
+	 	if (pra_frente) {
+	 		contador_bottom=contador_bottom+10;
+	 	}
+	 	 if (pra_baixo) {
+	 		contador_top=contador_top+10;
+	 	}
+	 	if (pra_cima) {
+	 		contador_top=contador_top-10;
+	 	}
+	 	 if (pra_tras) {
+	 		contador_bottom=contador_bottom-10;
+	 	}
+ 	
+            loopBall();
+        }, 100);
+    };
+    loopBall();
+</script>
